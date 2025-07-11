@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isBefore, format } from "date-fns";
 
 export default function Education({ editActive, toggleEdit }) {
   const [university, setUniversity] = useState({
@@ -22,6 +23,25 @@ export default function Education({ editActive, toggleEdit }) {
 
   function onToChange(e) {
     setUniversity({ ...university, to: e.target.value });
+  }
+
+  function onSubmit() {
+    const fromDate = getDateObject(university.from);
+    const toDate = getDateObject(university.to);
+    if (isBefore(fromDate, toDate)) {
+      toggleEdit();
+    } else {
+      alert(`Education from date must be before to date!`);
+    }
+  }
+
+  function getDateObject(dateString) {
+    const date = dateString.split("-");
+    return new Date(
+      parseInt(date[0]),
+      parseInt(date[1]) - 1,
+      parseInt(date[2])
+    );
   }
 
   return (
@@ -58,7 +78,7 @@ export default function Education({ editActive, toggleEdit }) {
             To:
             <input type="date" onChange={onToChange} value={university.to} />
           </label>
-          <button onClick={toggleEdit}>Submit</button>
+          <button onClick={onSubmit}>Submit</button>
         </>
       ) : (
         <>
@@ -67,7 +87,10 @@ export default function Education({ editActive, toggleEdit }) {
           <h3>
             Period:
             {university.from && university.to
-              ? " " + university.from + " - " + university.to
+              ? " " +
+                format(getDateObject(university.from), "dd MMM yyyy") +
+                " - " +
+                format(getDateObject(university.to), "dd MMM yyyy")
               : ""}
           </h3>
           <button onClick={toggleEdit}>Edit</button>
