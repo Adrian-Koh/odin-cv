@@ -60,74 +60,63 @@ export default function ExperienceList({ editActive, toggleEdit }) {
   }
 
   return (
-    <div>
+    <section>
       <h2>Experience</h2>
       {editActive ? (
         <>
           {experiences.map((experience) => (
-            <div>
-              <p>
-                <label>
-                  Company:
-                  <input
-                    type="text"
-                    onChange={(e) => onCompanyChange(e, experience.id)}
-                    value={experience.company}
-                  />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Position:
-                  <input
-                    type="text"
-                    onChange={(e) => onPositionChange(e, experience.id)}
-                    value={experience.position}
-                  />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Responsibilities:
-                  <input
-                    type="text"
-                    onChange={(e) => onDutiesChange(e, experience.id)}
-                    value={experience.duties}
-                  />
-                </label>
-              </p>
-              <p>
-                Dates:
-                <label>
-                  From:
-                  <input
-                    type="date"
-                    onChange={(e) => onFromChange(e, experience.id)}
-                    value={experience.from}
-                  />
-                </label>
-                <label>
-                  To:
-                  <input
-                    type="date"
-                    onChange={(e) => onToChange(e, experience.id)}
-                    value={experience.to}
-                  />
-                </label>
-              </p>
+            <div className="experience">
+              <label>
+                Company:
+                <input
+                  type="text"
+                  onChange={(e) => onCompanyChange(e, experience.id)}
+                  value={experience.company}
+                />
+              </label>
+              <label>
+                Position:
+                <input
+                  type="text"
+                  onChange={(e) => onPositionChange(e, experience.id)}
+                  value={experience.position}
+                />
+              </label>
+              <label>
+                Responsibilities:
+                <input
+                  type="text"
+                  onChange={(e) => onDutiesChange(e, experience.id)}
+                  value={experience.duties}
+                />
+              </label>
+              Dates:
+              <br />
+              <label>
+                From:
+                <input
+                  type="date"
+                  onChange={(e) => onFromChange(e, experience.id)}
+                  value={experience.from}
+                />
+              </label>
+              <label>
+                To:
+                <input
+                  type="date"
+                  onChange={(e) => onToChange(e, experience.id)}
+                  value={experience.to}
+                />
+              </label>
             </div>
           ))}
-          <p>
-            <button onClick={onAddExperience}>Add experience</button>
-          </p>
-          <p>
-            <button onClick={onSubmit}>Submit</button>
-          </p>
+          <button onClick={onAddExperience}>Add experience</button>
+          <button onClick={onSubmit}>Submit</button>
         </>
       ) : (
         <>
           {experiences.map((experience) => (
-            <div>
+            <div className="experience">
               <h3>Company: {experience.company}</h3>
               <h3>Position: {experience.position}</h3>
               <h3>Responsibilities: {experience.duties}</h3>
@@ -139,6 +128,6 @@ export default function ExperienceList({ editActive, toggleEdit }) {
           <button onClick={toggleEdit}>Edit</button>
         </>
       )}
-    </div>
+    </section>
   );
 }
