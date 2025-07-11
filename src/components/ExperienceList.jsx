@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isBefore, format } from "date-fns";
 
 export default function ExperienceList({ editActive, toggleEdit }) {
   const [experiences, setExperiences] = useState([]);
@@ -56,7 +57,24 @@ export default function ExperienceList({ editActive, toggleEdit }) {
   }
 
   function onSubmit() {
+    for (const experience of experiences) {
+      const fromDate = getDateObject(experience.from);
+      const toDate = getDateObject(experience.to);
+      if (!isBefore(fromDate, toDate)) {
+        alert(`${experience.company} from date must be before to date!`);
+        return;
+      }
+    }
     toggleEdit();
+  }
+
+  function getDateObject(dateString) {
+    const date = dateString.split("-");
+    return new Date(
+      parseInt(date[0]),
+      parseInt(date[1]) - 1,
+      parseInt(date[2])
+    );
   }
 
   return (
@@ -122,7 +140,10 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               <h3>
                 Period:
                 {experience.from && experience.to
-                  ? " " + experience.from + " - " + experience.to
+                  ? " " +
+                    format(getDateObject(experience.from), "dd MMM yyyy") +
+                    " - " +
+                    format(getDateObject(experience.to), "dd MMM yyyy")
                   : ""}
               </h3>
             </div>
