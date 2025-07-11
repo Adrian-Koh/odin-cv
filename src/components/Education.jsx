@@ -26,15 +26,15 @@ export default function Education({ editActive, toggleEdit }) {
             ?
             <>
                 <p>
-                    <label>University name: <input type="text" onChange={onNameChange}/></label>
+                    <label>University name: <input type="text" onChange={onNameChange} value={university.name}/></label>
                 </p>
                 <p>
-                    <label>Major: <input type="text" onChange={onMajorChange}/></label>
+                    <label>Major: <input type="text" onChange={onMajorChange} value={university.major}/></label>
                 </p>
                 <p>
                     Dates:
-                    <label>From: <input type="date" onChange={onFromChange}/></label>
-                    <label>To: <input type="date" onChange={onToChange}/></label>
+                    <label>From: <input type="date" onChange={onFromChange} value={university.from}/></label>
+                    <label>To: <input type="date" onChange={onToChange} value={university.to}/></label>
                 </p>
                 <p>
                     <button onClick={toggleEdit}>Submit</button>

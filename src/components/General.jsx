@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function General({ editActive, toggleEdit }) {
-    const [info, setInfo] = useState({ name: 'John Doe', email: 'example@example.com', phone: '123-456-7890' });
+    const [info, setInfo] = useState({ name: '', email: '', phone: '' });
 
     function onNameChange(e){
         setInfo({...info, name: e.target.value});
@@ -22,13 +22,13 @@ export default function General({ editActive, toggleEdit }) {
             ?
             <>
                 <p>
-                    <label>Name: <input type="text" onChange={onNameChange}/></label>
+                    <label>Name: <input type="text" onChange={onNameChange} value={info.name}/></label>
                 </p>
                 <p>
-                    <label>Email: <input type="email" onChange={onEmailChange}/></label>
+                    <label>Email: <input type="email" onChange={onEmailChange} value={info.email}/></label>
                 </p>
                 <p>
-                    <label>Phone number: <input type="text" onChange={onPhoneChange}/></label>
+                    <label>Phone number: <input type="text" onChange={onPhoneChange} value={info.phone}/></label>
                 </p>
                 <p>
                     <button onClick={toggleEdit}>Submit</button>
