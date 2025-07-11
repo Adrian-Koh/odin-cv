@@ -16,21 +16,29 @@ export default function General({ editActive, toggleEdit }) {
     }
 
     return <div>
-        <h1>General information</h1>
+        <h2>General information</h2>
         {   
             editActive 
             ?
             <>
-                <label>Name: <input type="text" onChange={onNameChange}/></label>
-                <label>Email: <input type="email" onChange={onEmailChange}/></label>
-                <label>Phone number: <input type="text" onChange={onPhoneChange}/></label>
-                <button onClick={toggleEdit}>Submit</button>
+                <p>
+                    <label>Name: <input type="text" onChange={onNameChange}/></label>
+                </p>
+                <p>
+                    <label>Email: <input type="email" onChange={onEmailChange}/></label>
+                </p>
+                <p>
+                    <label>Phone number: <input type="text" onChange={onPhoneChange}/></label>
+                </p>
+                <p>
+                    <button onClick={toggleEdit}>Submit</button>
+                </p>
             </>
             :
             <>
-                <h2>Name: {info.name}</h2>
-                <h2>Email: {info.email}</h2>
-                <h2>Phone number: {info.phone}</h2>
+                <h3>Name: {info.name}</h3>
+                <h3>Email: {info.email}</h3>
+                <h3>Phone number: {info.phone}</h3>
                 <button onClick={toggleEdit}>Edit</button>
             </>
         }
