@@ -20,6 +20,7 @@ section {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
+    gap: 5px;
     display: flex;
     flex-direction: column;
 }
@@ -33,7 +34,7 @@ button {
     align-self: center;
 }
 
-input {
+input, textarea {
     background-color: #4E65FF;
     color: white;
     border: solid 2px white;
@@ -44,4 +45,5 @@ input {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    gap: 5px;
 }

@@ -84,8 +84,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               </label>
               <label>
                 Responsibilities:
-                <input
-                  type="text"
+                <textarea
                   onChange={(e) => onDutiesChange(e, experience.id)}
                   value={experience.duties}
                 />
