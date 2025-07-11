@@ -1,19 +1,63 @@
 import { useState } from "react";
 
 export default function ExperienceList({ editActive, toggleEdit }) {
-  const [experiences, setExperiences] = useState([
-    { company: "meta", position: "engineer", duties: "code", from: "", to: "" },
-  ]);
+  const [experiences, setExperiences] = useState([]);
+  const [nextId, setNextId] = useState(0);
 
-  function onCompanyChange(e, id) {}
+  function onCompanyChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id
+        ? { ...experience, company: e.target.value }
+        : experience
+    );
+    setExperiences(newExperiences);
+  }
 
-  function onPositionChange(e, id) {}
+  function onPositionChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id
+        ? { ...experience, position: e.target.value }
+        : experience
+    );
+    setExperiences(newExperiences);
+  }
 
-  function onDutiesChange(e, id) {}
+  function onDutiesChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id
+        ? { ...experience, duties: e.target.value }
+        : experience
+    );
+    setExperiences(newExperiences);
+  }
 
-  function onFromChange(e, id) {}
+  function onFromChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id
+        ? { ...experience, from: e.target.value }
+        : experience
+    );
+    setExperiences(newExperiences);
+  }
 
-  function onToChange(e, id) {}
+  function onToChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id ? { ...experience, to: e.target.value } : experience
+    );
+    setExperiences(newExperiences);
+  }
+
+  function onAddExperience() {
+    setExperiences([
+      ...experiences,
+      { id: nextId, company: "", position: "", duties: "", from: "", to: "" },
+    ]);
+    setNextId(nextId + 1);
+  }
+
+  function onSubmit() {
+    toggleEdit();
+  }
 
   return (
     <div>
@@ -24,7 +68,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
             <div>
               <p>
                 <label>
-                  Company:{" "}
+                  Company:
                   <input
                     type="text"
                     onChange={(e) => onCompanyChange(e, experience.id)}
@@ -34,7 +78,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               </p>
               <p>
                 <label>
-                  Position:{" "}
+                  Position:
                   <input
                     type="text"
                     onChange={(e) => onPositionChange(e, experience.id)}
@@ -44,7 +88,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               </p>
               <p>
                 <label>
-                  Responsibilities:{" "}
+                  Responsibilities:
                   <input
                     type="text"
                     onChange={(e) => onDutiesChange(e, experience.id)}
@@ -55,7 +99,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               <p>
                 Dates:
                 <label>
-                  From:{" "}
+                  From:
                   <input
                     type="date"
                     onChange={(e) => onFromChange(e, experience.id)}
@@ -63,7 +107,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
                   />
                 </label>
                 <label>
-                  To:{" "}
+                  To:
                   <input
                     type="date"
                     onChange={(e) => onToChange(e, experience.id)}
@@ -73,9 +117,11 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               </p>
             </div>
           ))}
-
           <p>
-            <button onClick={toggleEdit}>Submit</button>
+            <button onClick={onAddExperience}>Add experience</button>
+          </p>
+          <p>
+            <button onClick={onSubmit}>Submit</button>
           </p>
         </>
       ) : (
