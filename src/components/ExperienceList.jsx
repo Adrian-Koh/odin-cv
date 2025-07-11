@@ -120,7 +120,10 @@ export default function ExperienceList({ editActive, toggleEdit }) {
               <h3>Position: {experience.position}</h3>
               <h3>Responsibilities: {experience.duties}</h3>
               <h3>
-                Period: {experience.from} - {experience.to}
+                Period:
+                {experience.from && experience.to
+                  ? " " + experience.from + " - " + experience.to
+                  : ""}
               </h3>
             </div>
           ))}

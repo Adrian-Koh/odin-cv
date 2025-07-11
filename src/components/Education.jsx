@@ -38,7 +38,7 @@ export default function Education({ editActive, toggleEdit }) {
             />
           </label>
           <label>
-            Major:{" "}
+            Major:
             <input
               type="text"
               onChange={onMajorChange}
@@ -65,7 +65,10 @@ export default function Education({ editActive, toggleEdit }) {
           <h3>University name: {university.name}</h3>
           <h3>Major: {university.major}</h3>
           <h3>
-            Period: {university.from} - {university.to}
+            Period:
+            {university.from && university.to
+              ? " " + university.from + " - " + university.to
+              : ""}
           </h3>
           <button onClick={toggleEdit}>Edit</button>
         </>

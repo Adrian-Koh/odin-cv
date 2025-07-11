@@ -1,9 +1,15 @@
 body {
     display: flex;
     justify-content: center;
+    background: linear-gradient(135deg, #93A5CF, #E4EfE9);
 }
 
 h1 {
     font-size: 28px;
     text-align: center;
+    background: linear-gradient(to right, #4E65FF, #92EFFD);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
 }
