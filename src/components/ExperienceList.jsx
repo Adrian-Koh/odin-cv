@@ -5,39 +5,16 @@ export default function ExperienceList({ editActive, toggleEdit }) {
   const [experiences, setExperiences] = useState([]);
   const [nextId, setNextId] = useState(0);
 
-  function onCompanyChange(e, id) {
-    let newExperiences = experiences.map((experience) =>
-      experience.id === id
-        ? { ...experience, company: e.target.value }
-        : experience
-    );
-    setExperiences(newExperiences);
-  }
-
-  function onPositionChange(e, id) {
-    let newExperiences = experiences.map((experience) =>
-      experience.id === id
-        ? { ...experience, position: e.target.value }
-        : experience
-    );
-    setExperiences(newExperiences);
-  }
-
-  function onDutiesChange(e, id) {
-    let newExperiences = experiences.map((experience) =>
-      experience.id === id
-        ? { ...experience, duties: e.target.value }
-        : experience
-    );
-    setExperiences(newExperiences);
-  }
-
-  function onFromChange(e, id) {
-    let newExperiences = experiences.map((experience) =>
-      experience.id === id
-        ? { ...experience, from: e.target.value }
-        : experience
-    );
+  function onFieldChange(e, key, id) {
+    let newExperiences = experiences.map((experience) => {
+      if (experience.id === id) {
+        let newExperience = { ...experience };
+        newExperience[key] = e.target.value;
+        return newExperience;
+      } else {
+        return experience;
+      }
+    });
     setExperiences(newExperiences);
   }
 
@@ -100,56 +77,61 @@ export default function ExperienceList({ editActive, toggleEdit }) {
       {editActive ? (
         <>
           {experiences.map((experience) => (
-            <div className="experience" key={experience.id}>
-              <label>
-                Company:
-                <input
-                  type="text"
-                  onChange={(e) => onCompanyChange(e, experience.id)}
-                  value={experience.company}
-                />
-              </label>
-              <label>
-                Position:
-                <input
-                  type="text"
-                  onChange={(e) => onPositionChange(e, experience.id)}
-                  value={experience.position}
-                />
-              </label>
-              <label>
-                Responsibilities:
-                <textarea
-                  onChange={(e) => onDutiesChange(e, experience.id)}
-                  value={experience.duties}
-                />
-              </label>
-              Dates:
-              <br />
-              <label>
-                From:
-                <input
-                  type="date"
-                  onChange={(e) => onFromChange(e, experience.id)}
-                  value={experience.from}
-                />
-              </label>
-              <label>
-                To:
-                <input
-                  type="date"
-                  onChange={(e) => onToChange(e, experience.id)}
-                  value={experience.to}
-                  disabled={experience.to === "now"}
-                />
-              </label>
-              <label>
-                Currently working:
-                <input
-                  type="checkbox"
-                  onChange={(e) => onCheckboxChange(e, experience.id)}
-                ></input>
-              </label>
+            <div className="experience-container" key={experience.id}>
+              <div className="experience">
+                <label>
+                  Company:
+                  <input
+                    type="text"
+                    onChange={(e) => onFieldChange(e, "company", experience.id)}
+                    value={experience.company}
+                  />
+                </label>
+                <label>
+                  Position:
+                  <input
+                    type="text"
+                    onChange={(e) =>
+                      onFieldChange(e, "position", experience.id)
+                    }
+                    value={experience.position}
+                  />
+                </label>
+                <label>
+                  Responsibilities:
+                  <textarea
+                    onChange={(e) => onFieldChange(e, "duties", experience.id)}
+                    value={experience.duties}
+                  />
+                </label>
+                Dates:
+                <br />
+                <label>
+                  From:
+                  <input
+                    type="date"
+                    onChange={(e) => onFieldChange(e, "from", experience.id)}
+                    value={experience.from}
+                  />
+                </label>
+                <label>
+                  To:
+                  <input
+                    type="date"
+                    onChange={(e) => onToChange(e, experience.id)}
+                    value={experience.to}
+                    disabled={experience.to === "now"}
+                  />
+                </label>
+                <label>
+                  Currently working:
+                  <input
+                    type="checkbox"
+                    onChange={(e) => onCheckboxChange(e, experience.id)}
+                    checked={experience.to === "now"}
+                  ></input>
+                </label>
+              </div>
             </div>
           ))}
           <button onClick={onAddExperience}>Add experience</button>

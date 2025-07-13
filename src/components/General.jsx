@@ -3,16 +3,10 @@ import { useState } from "react";
 export default function General({ editActive, toggleEdit }) {
   const [info, setInfo] = useState({ name: "", email: "", phone: "" });
 
-  function onNameChange(e) {
-    setInfo({ ...info, name: e.target.value });
-  }
-
-  function onEmailChange(e) {
-    setInfo({ ...info, email: e.target.value });
-  }
-
-  function onPhoneChange(e) {
-    setInfo({ ...info, phone: e.target.value });
+  function onFieldChange(e, key) {
+    let newInfo = { ...info };
+    newInfo[key] = e.target.value;
+    setInfo(newInfo);
   }
 
   return (
@@ -22,15 +16,27 @@ export default function General({ editActive, toggleEdit }) {
         <>
           <label>
             Name:{" "}
-            <input type="text" onChange={onNameChange} value={info.name} />
+            <input
+              type="text"
+              onChange={(e) => onFieldChange(e, "name")}
+              value={info.name}
+            />
           </label>
           <label>
             Email:{" "}
-            <input type="email" onChange={onEmailChange} value={info.email} />
+            <input
+              type="email"
+              onChange={(e) => onFieldChange(e, "email")}
+              value={info.email}
+            />
           </label>
           <label>
             Phone number:{" "}
-            <input type="text" onChange={onPhoneChange} value={info.phone} />
+            <input
+              type="text"
+              onChange={(e) => onFieldChange(e, "phone")}
+              value={info.phone}
+            />
           </label>
           <button onClick={toggleEdit}>Submit</button>
         </>

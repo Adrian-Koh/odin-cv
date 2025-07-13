@@ -9,20 +9,10 @@ export default function Education({ editActive, toggleEdit }) {
     to: "",
   });
 
-  function onNameChange(e) {
-    setUniversity({ ...university, name: e.target.value });
-  }
-
-  function onMajorChange(e) {
-    setUniversity({ ...university, major: e.target.value });
-  }
-
-  function onFromChange(e) {
-    setUniversity({ ...university, from: e.target.value });
-  }
-
-  function onToChange(e) {
-    setUniversity({ ...university, to: e.target.value });
+  function onFieldChange(e, key) {
+    let newUniversity = { ...university };
+    newUniversity[key] = e.target.value;
+    setUniversity(newUniversity);
   }
 
   function onSubmit() {
@@ -53,7 +43,7 @@ export default function Education({ editActive, toggleEdit }) {
             University name:{" "}
             <input
               type="text"
-              onChange={onNameChange}
+              onChange={(e) => onFieldChange(e, "name")}
               value={university.name}
             />
           </label>
@@ -61,7 +51,7 @@ export default function Education({ editActive, toggleEdit }) {
             Major:
             <input
               type="text"
-              onChange={onMajorChange}
+              onChange={(e) => onFieldChange(e, "major")}
               value={university.major}
             />
           </label>
@@ -70,13 +60,17 @@ export default function Education({ editActive, toggleEdit }) {
             From:
             <input
               type="date"
-              onChange={onFromChange}
+              onChange={(e) => onFieldChange(e, "from")}
               value={university.from}
             />
           </label>
           <label>
             To:
-            <input type="date" onChange={onToChange} value={university.to} />
+            <input
+              type="date"
+              onChange={(e) => onFieldChange(e, "to")}
+              value={university.to}
+            />
           </label>
           <button onClick={onSubmit}>Submit</button>
         </>
