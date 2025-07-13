@@ -1,9 +1,3 @@
-:root  {
-    --blue: #11998E;
-    --green: #38EF7D;
-    --input-bg: linear-gradient(to right, #614385, #516395);
-}
-
 h2 {
     font-weight: 600;
     font-size: 20px;
