@@ -1,26 +1,26 @@
 h2 {
-    font-weight: 600;
-    font-size: 20px;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .experience {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  gap: 5px;
 }
 
 .experience-container {
-    display: flex;
-    border-bottom: solid 2px #92EFFD;
-    margin-bottom: 3px;
+  display: flex;
+  border-bottom: solid 2px #92effd;
+  margin-bottom: 3px;
 }
 
 .experience-container > .experience {
-    width: calc(100% - 60px);
+  width: calc(100% - 60px);
 }
 
 .delete-exp {
-    width: 60px;
-    align-self: first baseline;
+  width: 60px;
+  align-self: first baseline;
 }

@@ -20,7 +20,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
 
   function onToChange(e, id) {
     let newExperiences = experiences.map((experience) =>
-      experience.id === id ? { ...experience, to: e.target.value } : experience
+      experience.id === id ? { ...experience, to: e.target.value } : experience,
     );
     setExperiences(newExperiences);
   }
@@ -29,7 +29,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
     let newExperiences = experiences.map((experience) =>
       experience.id === id
         ? { ...experience, to: e.target.checked ? "now" : "" }
-        : experience
+        : experience,
     );
     setExperiences(newExperiences);
   }
@@ -60,13 +60,13 @@ export default function ExperienceList({ editActive, toggleEdit }) {
     return new Date(
       parseInt(date[0]),
       parseInt(date[1]) - 1,
-      parseInt(date[2])
+      parseInt(date[2]),
     );
   }
 
   function deleteExperience(id) {
     let newExperiences = experiences.filter(
-      (experience) => experience.id !== id
+      (experience) => experience.id !== id,
     );
     setExperiences(newExperiences);
   }
