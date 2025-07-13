@@ -36,9 +36,9 @@ export default function General({ editActive, toggleEdit }) {
         </>
       ) : (
         <>
-          <h3>Name: {info.name}</h3>
-          <h3>Email: {info.email}</h3>
-          <h3>Phone number: {info.phone}</h3>
+          <p className="info">Name: {info.name}</p>
+          <p className="info">Email: {info.email}</p>
+          <p className="info">Phone number: {info.phone}</p>
           <button onClick={toggleEdit}>Edit</button>
         </>
       )}

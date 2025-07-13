@@ -77,6 +77,13 @@ export default function ExperienceList({ editActive, toggleEdit }) {
     );
   }
 
+  function deleteExperience(id) {
+    let newExperiences = experiences.filter(
+      (experience) => experience.id !== id
+    );
+    setExperiences(newExperiences);
+  }
+
   return (
     <section>
       <h2>Experience</h2>
@@ -133,20 +140,31 @@ export default function ExperienceList({ editActive, toggleEdit }) {
       ) : (
         <>
           {experiences.map((experience) => (
-            <div className="experience">
-              <h3>Company: {experience.company}</h3>
-              <h3>Position: {experience.position}</h3>
-              <h3>Responsibilities: {experience.duties}</h3>
-              <h3>
-                Period:
-                {experience.from && experience.to
-                  ? " " +
-                    format(getDateObject(experience.from), "dd MMM yyyy") +
-                    " - " +
-                    format(getDateObject(experience.to), "dd MMM yyyy")
-                  : ""}
-              </h3>
-            </div>
+            <>
+              <div className="experience-container">
+                <div className="experience">
+                  <p className="info">Company: {experience.company}</p>
+                  <p className="info">Position: {experience.position}</p>
+                  <p className="info">Responsibilities: {experience.duties}</p>
+                  <p className="info">
+                    Period:
+                    {experience.from && experience.to
+                      ? " " +
+                        format(getDateObject(experience.from), "dd MMM yyyy") +
+                        " - " +
+                        format(getDateObject(experience.to), "dd MMM yyyy")
+                      : ""}
+                  </p>
+                </div>
+                <button
+                  class="delete-exp"
+                  onClick={() => deleteExperience(experience.id)}
+                >
+                  Delete
+                </button>
+              </div>
+              <hr></hr>
+            </>
           ))}
           <button onClick={toggleEdit}>Edit</button>
         </>

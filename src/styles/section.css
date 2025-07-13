@@ -1,6 +1,7 @@
 :root  {
     --blue: #11998E;
     --green: #38EF7D;
+    --input-bg: linear-gradient(to right, #614385, #516395);
 }
 
 h2 {
@@ -8,10 +9,11 @@ h2 {
     font-size: 20px;
 }
 
-h3, label {
+.info, label {
     font-weight: 300;
     font-size: 16px;
     margin: 0;
+    
 }
 
 section {
@@ -31,14 +33,14 @@ button {
     color: white;
     border: solid 2px white;
     border-radius: 5px;
-    font-size: 16px;
-    background-color: #09203F;
+    font-size: 14px;
+    background: var(--input-bg);
     align-self: center;
-    padding: 5px 10px;
+    padding: 3px 5px;
 }
 
 input, textarea {
-    background-color: #4E65FF;
+    background: var(--input-bg);
     color: white;
     border: solid 2px white;
     border-radius: 3px;
@@ -54,4 +56,23 @@ input[type="text"], textarea {
     flex-direction: column;
     margin-bottom: 10px;
     gap: 5px;
+}
+
+.experience-container {
+    display: flex;
+}
+
+.experience-container > .experience {
+    width: calc(100% - 60px);
+}
+
+.delete-exp {
+    width: 60px;
+    align-self: first baseline;
+}
+
+hr {
+    height: 3px;
+    background-color: #92EFFD;
+    width: 100%;
 }

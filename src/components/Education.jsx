@@ -82,9 +82,9 @@ export default function Education({ editActive, toggleEdit }) {
         </>
       ) : (
         <>
-          <h3>University name: {university.name}</h3>
-          <h3>Major: {university.major}</h3>
-          <h3>
+          <p className="info">University name: {university.name}</p>
+          <p className="info">Major: {university.major}</p>
+          <p className="info">
             Period:
             {university.from && university.to
               ? " " +
@@ -92,7 +92,7 @@ export default function Education({ editActive, toggleEdit }) {
                 " - " +
                 format(getDateObject(university.to), "dd MMM yyyy")
               : ""}
-          </h3>
+          </p>
           <button onClick={toggleEdit}>Edit</button>
         </>
       )}
