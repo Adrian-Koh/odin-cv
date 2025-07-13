@@ -13,3 +13,54 @@ h1 {
     border-radius: 5px;
     margin: 5px;
 }
+
+.info, label {
+    font-weight: 300;
+    font-size: 16px;
+    margin: 0;
+    
+}
+
+section {
+    background: linear-gradient(to right, var(--blue), var(--green)) ;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    gap: 5px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    color: white;
+    border: solid 2px white;
+    border-radius: 5px;
+    font-size: 14px;
+    background: var(--input-bg);
+    align-self: center;
+    padding: 3px 5px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+input, textarea {
+    background: var(--input-bg);
+    color: white;
+    border: solid 2px white;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+textarea {
+    height: 70px;
+}
+
+input[type="text"], textarea {
+    width: 50%;
+}

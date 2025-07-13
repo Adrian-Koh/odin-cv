@@ -48,6 +48,15 @@ export default function ExperienceList({ editActive, toggleEdit }) {
     setExperiences(newExperiences);
   }
 
+  function onCheckboxChange(e, id) {
+    let newExperiences = experiences.map((experience) =>
+      experience.id === id
+        ? { ...experience, to: e.target.checked ? "now" : "" }
+        : experience
+    );
+    setExperiences(newExperiences);
+  }
+
   function onAddExperience() {
     setExperiences([
       ...experiences,
@@ -59,7 +68,8 @@ export default function ExperienceList({ editActive, toggleEdit }) {
   function onSubmit() {
     for (const experience of experiences) {
       const fromDate = getDateObject(experience.from);
-      const toDate = getDateObject(experience.to);
+      const toDate =
+        experience.to === "now" ? new Date() : getDateObject(experience.to);
       if (!isBefore(fromDate, toDate)) {
         alert(`${experience.company} from date must be before to date!`);
         return;
@@ -90,7 +100,7 @@ export default function ExperienceList({ editActive, toggleEdit }) {
       {editActive ? (
         <>
           {experiences.map((experience) => (
-            <div className="experience">
+            <div className="experience" key={experience.id}>
               <label>
                 Company:
                 <input
@@ -130,7 +140,15 @@ export default function ExperienceList({ editActive, toggleEdit }) {
                   type="date"
                   onChange={(e) => onToChange(e, experience.id)}
                   value={experience.to}
+                  disabled={experience.to === "now"}
                 />
+              </label>
+              <label>
+                Currently working:
+                <input
+                  type="checkbox"
+                  onChange={(e) => onCheckboxChange(e, experience.id)}
+                ></input>
               </label>
             </div>
           ))}
@@ -140,31 +158,30 @@ export default function ExperienceList({ editActive, toggleEdit }) {
       ) : (
         <>
           {experiences.map((experience) => (
-            <>
-              <div className="experience-container">
-                <div className="experience">
-                  <p className="info">Company: {experience.company}</p>
-                  <p className="info">Position: {experience.position}</p>
-                  <p className="info">Responsibilities: {experience.duties}</p>
-                  <p className="info">
-                    Period:
-                    {experience.from && experience.to
-                      ? " " +
-                        format(getDateObject(experience.from), "dd MMM yyyy") +
-                        " - " +
-                        format(getDateObject(experience.to), "dd MMM yyyy")
-                      : ""}
-                  </p>
-                </div>
-                <button
-                  class="delete-exp"
-                  onClick={() => deleteExperience(experience.id)}
-                >
-                  Delete
-                </button>
+            <div className="experience-container" key={experience.id}>
+              <div className="experience">
+                <p className="info">Company: {experience.company}</p>
+                <p className="info">Position: {experience.position}</p>
+                <p className="info">Responsibilities: {experience.duties}</p>
+                <p className="info">
+                  Period:
+                  {experience.from && experience.to
+                    ? " " +
+                      format(getDateObject(experience.from), "dd MMM yyyy") +
+                      " - " +
+                      (experience.to === "now"
+                        ? "Current"
+                        : format(getDateObject(experience.to), "dd MMM yyyy"))
+                    : ""}
+                </p>
               </div>
-              <hr></hr>
-            </>
+              <button
+                className="delete-exp"
+                onClick={() => deleteExperience(experience.id)}
+              >
+                Delete
+              </button>
+            </div>
           ))}
           <button onClick={toggleEdit}>Edit</button>
         </>
